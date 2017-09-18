@@ -1,0 +1,14 @@
+#!/bin/bash
+set -euo pipefail
+cd "$(cd "$(dirname "$0")"; cd ..; pwd)"
+
+if [[ -z "${OWNER-}" ]]; then
+  OWNER=tonglil
+fi
+
+BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+if [ "$BRANCH" = "master" ]; then
+  BRANCH="latest"
+fi
+
+docker build -t "$OWNER/auth-gcloud:$BRANCH" .
