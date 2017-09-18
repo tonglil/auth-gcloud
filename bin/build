@@ -11,4 +11,4 @@ if [ "$BRANCH" = "master" ]; then
   BRANCH="latest"
 fi
 
-docker build -t "$OWNER/auth-gcloud:$BRANCH" .
+docker build -t "$OWNER/auth-gcloud:$BRANCH" -f "Dockerfile$1" .
