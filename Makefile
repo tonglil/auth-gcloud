@@ -1,11 +1,9 @@
 .PHONY: build push docker
 
-DOCKERFILE ?= ""
-
 default: build
 
 build:
-	bin/build $(DOCKERFILE)
+	bin/build
 
 push:
 	bin/push

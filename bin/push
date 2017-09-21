@@ -2,13 +2,6 @@
 set -euo pipefail
 cd "$(cd "$(dirname "$0")"; cd ..; pwd)"
 
-if [[ -z "${OWNER-}" ]]; then
-  OWNER=tonglil
-fi
+source bin/vars
 
-BRANCH="$(git rev-parse --abbrev-ref HEAD)"
-if [ "$BRANCH" = "master" ]; then
-  BRANCH="latest"
-fi
-
-docker push "$OWNER/auth-gcloud:$BRANCH"
+docker push "$OWNER/$NAME:$TAG"

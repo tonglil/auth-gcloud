@@ -1,0 +1,21 @@
+#!/bin/bash
+set -euo pipefail
+
+if [[ -z "${OWNER-}" ]]; then
+  OWNER=tonglil
+fi
+
+NAME=auth-gcloud
+
+TAG="latest"
+DOCKERFILE="Dockerfile"
+
+if ! [[ -z ${BASE:-} ]]; then
+  TAG="$BASE"
+  DOCKERFILE+=".$BASE"
+fi
+
+BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+if [[ "$BRANCH" != "master" ]]; then
+  TAG="$BRANCH-$TAG"
+fi

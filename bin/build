@@ -2,23 +2,6 @@
 set -euo pipefail
 cd "$(cd "$(dirname "$0")"; cd ..; pwd)"
 
-NAME=auth-gcloud
-
-if [[ -z "${OWNER-}" ]]; then
-  OWNER=tonglil
-fi
-
-TAG="latest"
-DOCKERFILE="Dockerfile"
-
-if ! [[ -z $1 ]]; then
-  TAG="$1"
-  DOCKERFILE+=".$1"
-fi
-
-BRANCH="$(git rev-parse --abbrev-ref HEAD)"
-if [[ "$BRANCH" != "master" ]]; then
-  TAG="$BRANCH-$TAG"
-fi
+source bin/vars
 
 docker build -t "$OWNER/$NAME:$TAG" -f "$DOCKERFILE" .
