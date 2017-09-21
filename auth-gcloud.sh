@@ -1,6 +1,5 @@
 #!/bin/bash
 set -euo pipefail
-cd "$(cd "$(dirname "$0")"; cd ..; pwd)"
 
 main() {
   CRED=${GCP_JSON_KEY:-${GOOGLE_CREDENTIALS:-${TOKEN}}}
