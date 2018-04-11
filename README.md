@@ -35,8 +35,7 @@ With (Drone 0.5+):
 pipeline:
   image: tonglil/auth-gcloud
   commands:
+    - auth-gcloud
     - gcloud ...
-  secret:
-    - source: google_credential
-      target: token
+  secret: [google_credentials]
 ```
