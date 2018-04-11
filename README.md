@@ -33,9 +33,10 @@ With (Drone 0.5+):
 
 ```yml
 pipeline:
-  image: tonglil/auth-gcloud
-  commands:
-    - auth-gcloud
-    - gcloud ...
-  secret: [google_credentials]
+  gcp-actions:
+    image: tonglil/auth-gcloud
+    commands:
+      - auth-gcloud
+      - gcloud ...
+    secret: [google_credentials]
 ```
