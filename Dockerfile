@@ -1,4 +1,4 @@
-FROM google/cloud-sdk:171.0.0
+FROM google/cloud-sdk:latest
 
 COPY auth-gcloud.sh /bin/auth-gcloud
 
