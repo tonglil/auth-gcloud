@@ -7,6 +7,7 @@ main() {
 
   echo "$CRED" > "$KEY"
 
+  _trace gcloud version
   _trace gcloud auth activate-service-account --key-file "$KEY"
 
   _trace rm "$KEY"
