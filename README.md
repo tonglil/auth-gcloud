@@ -40,3 +40,12 @@ pipeline:
       - gcloud ...
     secret: [google_credentials]
 ```
+
+## Releasing
+
+Use the base image's `gcloud` version number as the tag:
+
+```
+make pull
+make version
+```

@@ -4,4 +4,4 @@ cd "$(cd "$(dirname "$0")"; cd ..; pwd)"
 
 source bin/vars
 
-docker build -t "$OWNER/$NAME:$TAG" -f "$DOCKERFILE" .
+docker build --pull -t "$OWNER/$NAME:$TAG" -f "$DOCKERFILE" .
