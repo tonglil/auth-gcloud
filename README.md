@@ -64,9 +64,9 @@ Cleanup GCR:
     commands:
       - auth-gcloud
         # delete untagged images
-      - gcloud container images list-tags "${REGISTRY}/${REPO}" --filter='-tags:*' --format='get(digest)' --limit=unlimited | xargs -I {arg} gcloud container images delete "${REGISTRY}/${REPO}@{arg}" --quiet
+      - gcloud container images list-tags "$REGISTRY/$REPO" --filter='-tags:*' --format='get(digest)' --limit=unlimited | xargs -I {arg} gcloud container images delete "$REGISTRY/$REPO@{arg}" --quiet
         # only keep most recent 50 images
-      - gcloud container images list-tags "${REGISTRY}/${REPO}" --format='get(digest)' --limit=unlimited | tail -n +51 | xargs -I {arg} gcloud container images delete "${REGISTRY}/${REPO}@{arg}" --quiet
+      - gcloud container images list-tags "$REGISTRY/$REPO" --format='get(digest)' --limit=unlimited | tail -n +51 | xargs -I {arg} gcloud container images delete "$REGISTRY/$REPO@{arg}" --quiet
 ```
 
 Tag an existing GCR image on release:
@@ -80,7 +80,7 @@ Tag an existing GCR image on release:
       - REPO=project/image
     commands:
       - auth-gcloud
-      - gcloud container images add-tag "${REGISTRY}/${REPO}:${DRONE_COMMIT}" "${REGISTRY}/${REPO}:${DRONE_TAG}" "${REGISTRY}/${REPO}:stable" --quiet
+      - gcloud container images add-tag "$REGISTRY/$REPO:${DRONE_COMMIT}" "$REGISTRY/$REPO:${DRONE_TAG}" "$REGISTRY/$REPO:stable" --quiet
     when:
       event: tag
 ```
@@ -99,7 +99,7 @@ Copy an existing GCR image on release:
     commands:
       - auth-gcloud
       # it is possible to tag/copy to multiple destinations
-      - gcloud container images add-tag "${FROM_REGISTRY}/${FROM_REPO}:${DRONE_COMMIT}" "${DST_REGISTRY}/${DST_REPO}:${DRONE_TAG}" --quiet
+      - gcloud container images add-tag "$SRC_REGISTRY/$SRC_REPO:${DRONE_COMMIT}" "$DST_REGISTRY/$DST_REPO:${DRONE_TAG}" --quiet
     when:
       event: tag
 ```
