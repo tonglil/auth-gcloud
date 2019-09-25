@@ -14,7 +14,19 @@ docker run \
 
 ## Example
 
-Using this replaces (Drone 0.4):
+Drone 0.5+:
+
+```yml
+pipeline:
+  gcp-actions:
+    image: tonglil/auth-gcloud
+    commands:
+      - auth-gcloud
+      - gcloud ...
+    secrets: [google_credentials]
+```
+
+Using this replaces Drone 0.4:
 
 ```yml
 build:
@@ -27,18 +39,6 @@ build:
     - echo $TOKEN_B64 | base64 -d > $GOOGLE_APPLICATION_CREDENTIALS
     - gcloud auth activate-service-account --key-file "$GOOGLE_APPLICATION_CREDENTIALS"
     - gcloud ...
-```
-
-With (Drone 0.5+):
-
-```yml
-pipeline:
-  gcp-actions:
-    image: tonglil/auth-gcloud
-    commands:
-      - auth-gcloud
-      - gcloud ...
-    secret: [google_credentials]
 ```
 
 ## Releasing
