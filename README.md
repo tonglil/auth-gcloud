@@ -66,7 +66,7 @@ Cleanup GCR:
         # delete untagged images
       - gcloud container images list-tags "$REGISTRY/$REPO" --filter='-tags:*' --format='get(digest)' --limit=unlimited | xargs -I {arg} gcloud container images delete "$REGISTRY/$REPO@{arg}" --quiet
         # only keep most recent 50 images
-      - gcloud container images list-tags "$REGISTRY/$REPO" --format='get(digest)' --limit=unlimited | tail -n +51 | xargs -I {arg} gcloud container images delete "$REGISTRY/$REPO@{arg}" --quiet
+      - gcloud container images list-tags "$REGISTRY/$REPO" --format='get(digest)' --limit=unlimited | tail -n +51 | xargs -I {arg} gcloud container images delete "$REGISTRY/$REPO@{arg}" --quiet --force-delete-tags
 ```
 
 Tag an existing GCR image on release:
