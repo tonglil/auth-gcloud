@@ -2,7 +2,7 @@
 set -euo pipefail
 
 main() {
-  CRED=${GCP_JSON_KEY:-${GOOGLE_CREDENTIALS:-${TOKEN}}}
+  CRED=${GOOGLE_CREDENTIALS:-${GCP_JSON_KEY:-${TOKEN}}}
   KEY=/tmp/gcloud.json
 
   echo "$CRED" > "$KEY"
@@ -13,11 +13,20 @@ main() {
   _trace rm "$KEY"
 }
 
+check() {
+  if [[ -z "${GOOGLE_CREDENTIALS:-${GCP_JSON_KEY:-${TOKEN:-}}}" ]]; then
+    echo "Google JSON credential not provided (GOOGLE_CREDENTIALS/GCP_JSON_KEY/TOKEN)"
+    exit 1
+  fi
+}
+
 # Display the underlying command
 _trace() {
   cmd=($@)
   echo "$ ${cmd[*]}"
   "${cmd[@]}"
 }
+
+check
 
 main
