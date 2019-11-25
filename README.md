@@ -57,7 +57,7 @@ Cleanup GCR:
 ```yml
   gcr-cleanup:
     image: tonglil/auth-gcloud:alpine
-    secret: [google_credentials]
+    secrets: [google_credentials]
     environment:
       - REGISTRY=us.gcr.io
       - REPO=project/image
@@ -74,7 +74,7 @@ Tag an existing GCR image on release:
 ```yml
   gcr-tag:
     image: tonglil/auth-gcloud:alpine
-    secret: [google_credentials]
+    secrets: [google_credentials]
     environment:
       - REGISTRY=us.gcr.io
       - REPO=project/image
@@ -90,7 +90,7 @@ Copy an existing GCR image on release:
 ```yml
   gcr-tag:
     image: tonglil/auth-gcloud:alpine
-    secret: [google_credentials]
+    secrets: [google_credentials]
     environment:
       - SRC_REGISTRY=us.gcr.io
       - SRC_REPO=project/image1
