@@ -30,6 +30,9 @@ steps:
 
 ### Drone 0.5+
 
+<details>
+  <summary>Expand</summary>
+
 ```yml
 pipeline:
   gcp-actions:
@@ -39,8 +42,12 @@ pipeline:
       - gcloud ...
     secrets: [google_credentials]
 ```
+</details>
 
 ### Drone 0.4
+
+<details>
+  <summary>Expand</summary>
 
 ```yml
 build:
@@ -54,6 +61,7 @@ build:
     - gcloud auth activate-service-account --key-file "$GOOGLE_APPLICATION_CREDENTIALS"
     - gcloud ...
 ```
+</details>
 
 ## Releasing
 
