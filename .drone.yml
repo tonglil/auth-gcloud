@@ -3,6 +3,7 @@ kind: pipeline
 name: latest
 
 trigger:
+  branch: main
   event: push
 
 steps:
