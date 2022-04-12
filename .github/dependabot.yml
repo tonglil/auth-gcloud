@@ -1,4 +1,6 @@
-- package-ecosystem: docker
-  directory: "/"
-  schedule:
-    interval: daily
+version: 2
+updates:
+  - package-ecosystem: docker
+    directory: "/"
+    schedule:
+      interval: daily
