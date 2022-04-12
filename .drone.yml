@@ -2,17 +2,15 @@
 kind: pipeline
 name: latest
 
-platform:
-  os: linux
-  arch: amd64
-
-when:
+trigger:
   event: push
 
 steps:
 - name: publish-full-latest
   image: plugins/docker
   pull: if-not-exists
+  depends_on:
+    - clone
   settings:
     tags: "latest"
     dockerfile: Dockerfile
@@ -25,6 +23,8 @@ steps:
 - name: publish-alpine-latest
   image: plugins/docker
   pull: if-not-exists
+  depends_on:
+    - clone
   settings:
     tags: "alpine"
     dockerfile: Dockerfile.alpine
@@ -37,6 +37,8 @@ steps:
 - name: publish-slim-latest
   image: plugins/docker
   pull: if-not-exists
+  depends_on:
+    - clone
   settings:
     tags: "slim"
     dockerfile: Dockerfile.slim
@@ -50,17 +52,15 @@ steps:
 kind: pipeline
 name: versioned
 
-platform:
-  os: linux
-  arch: amd64
-
-when:
+trigger:
   event: tag
 
 steps:
 - name: publish-full
   image: plugins/docker
   pull: if-not-exists
+  depends_on:
+    - clone
   settings:
     tags: "${DRONE_TAG}"
     dockerfile: Dockerfile
@@ -73,6 +73,8 @@ steps:
 - name: publish-alpine
   image: plugins/docker
   pull: if-not-exists
+  depends_on:
+    - clone
   settings:
     tags: "${DRONE_TAG}-alpine"
     dockerfile: Dockerfile.alpine
@@ -85,6 +87,8 @@ steps:
 - name: publish-slim
   image: plugins/docker
   pull: if-not-exists
+  depends_on:
+    - clone
   settings:
     tags: "${DRONE_TAG}-slim"
     dockerfile: Dockerfile.slim
