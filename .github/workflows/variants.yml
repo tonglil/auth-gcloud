@@ -49,6 +49,7 @@ jobs:
       uses: docker/build-push-action@v5
       with:
         context: .
+        file: Dockerfile.${{ matrix.variant }}
         platforms: linux/amd64
         push: true
         tags: ${{ steps.meta.outputs.tags }}
