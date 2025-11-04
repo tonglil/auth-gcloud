@@ -1,4 +1,4 @@
-FROM google/cloud-sdk:544.0.0
+FROM google/cloud-sdk:546.0.0
 
 ENV CLOUDSDK_CORE_DISABLE_PROMPTS=1
 
